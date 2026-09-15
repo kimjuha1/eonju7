@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘 뭐 먹지? | 점심 메뉴 추천</title>
+    <style>
+        /* 기본 스타일 초기화 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+        }
+
+        body {
+            background-color: #f7f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 카드로 이루어진 메인 컨테이너 */
+        .container {
+            background: #ffffff;
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* 메뉴 디스플레이 상자 */
+        .menu-box {
+            background-color: #fff8f0;
+            border: 2px dashed #ff9f43;
+            border-radius: 15px;
+            padding: 30px 20px;
+            margin-bottom: 30px;
+            min-height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .category {
+            font-size: 14px;
+            color: #ff9f43;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .menu-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2d3436;
+        }
+
+        /* 추천 버튼 */
+        .recommend-btn {
+            width: 100%;
+            background-color: #ff9f43;
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(255, 159, 67, 0.3);
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .recommend-btn:hover {
+            background-color: #ee5253;
+        }
+
+        .recommend-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* 하단 지도 연결 버튼/안내문 */
+        .footer-note {
+            margin-top: 25px;
+            font-size: 13px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🍱 오늘 뭐 먹지?</h1>
+        <p class="subtitle">결정장애를 위한 랜덤 점심 메뉴 추천기</p>
+
+        <div class="menu-box">
+            <span class="category" id="category-text">버튼을 눌러주세요!</span>
+            <div class="menu-name" id="menu-text">❓ 오늘의 메뉴는?</div>
+        </div>
+
+        <button class="recommend-btn" onclick="recommendMenu()">점심 메뉴 추천받기</button>
+
+        <p class="footer-note">마음에 들지 않으면 버튼을 다시 눌러보세요!</p>
+    </div>
+
+    <script>
+        // 추천할 점심 메뉴 데이터 리스트
+        const menuList = [
+            { category: "한식", name: "김치찌개" },
+            { category: "한식", name: "제육볶음" },
+            { category: "한식", name: "된장찌개" },
+            { category: "한식", name: "비빔밥" },
+            { category: "한식", name: "국밥" },
+            { category: "중식", name: "짜장면" },
+            { category: "중식", name: "짬뽕" },
+            { category: "중식", name: "마라탕" },
+            { category: "일식", name: "돈까스" },
+            { category: "일식", name: "초밥" },
+            { category: "일식", name: "라멘" },
+            { category: "양식", name: "파스타" },
+            { category: "양식", name: "수제버거" },
+            { category: "분식", name: "떡볶이 & 튀김" },
+            { category: "분식", name: "김밥 & 라면" },
+            { category: "간편식", name: "샐러드 & 샌드위치" }
+        ];
+
+        // 메뉴 추천 함수
+        function recommendMenu() {
+            const categoryEl = document.getElementById('category-text');
+            const menuEl = document.getElementById('menu-text');
+
+            // 랜덤으로 하나 선택
+            const randomIndex = Math.floor(Math.random() * menuList.length);
+            const selected = menuList[randomIndex];
+
+            // 화면에 표시
+            categoryEl.innerText = `[${selected.category}]`;
+            menuEl.innerText = selected.name;
+        }
+    </script>
+
+</body>
+</html>
